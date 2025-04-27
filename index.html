@@ -1,427 +1,727 @@
 <!DOCTYPE html>
+<!-- 文档类型声明，使用HTML5 -->
 <html lang="zh-CN">
+<!-- 文档根元素，设置语言为简体中文 -->
 <head>
+    <!-- 文档头部，包含元数据和链接信息 -->
     <meta charset="UTF-8">
+    <!-- 字符编码设置为UTF-8 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 响应式视口设置，确保在不同设备上正确显示 -->
     <title>个人简历 - 王靖瑶副教授</title>
+    <!-- 页面标题 -->
+    
     <style>
+        /* CSS样式部分开始 */
+        
+        /* 定义CSS变量，方便统一管理和修改主题颜色 */
         :root {
-            --primary-color: #1a56a7;
-            --secondary-color: #f5f5f5;
-            --accent-color: #e74c3c;
-            --text-color: #333;
-            --light-text: #777;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --primary-color: #1a56a7;      /* 主色调 - 深蓝色 */
+            --secondary-color: #f5f5f5;    /* 次要色调 - 浅灰色 */
+            --accent-color: #e74c3c;       /* 强调色 - 红色 */
+            --text-color: #333;            /* 主要文本颜色 - 深灰色 */
+            --light-text: #777;            /* 浅色文本 - 灰色 */
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 阴影效果 */
         }
         
+        /* 通用选择器，重置所有元素的默认边距和内边距 */
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            box-sizing: border-box; /* 盒模型设置为border-box，便于布局计算 */
         }
         
+        /* 页面主体样式 */
         body {
-            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: #f9f9f9;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif; /* 字体设置，优先使用Segoe UI，然后是微软雅黑 */
+            line-height: 1.6; /* 行高1.6倍 */
+            color: var(--text-color); /* 使用定义的文本颜色 */
+            background-color: #f9f9f9; /* 背景浅灰色 */
         }
         
+        /* 容器样式，用于限制内容宽度并居中 */
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+            max-width: 1200px; /* 最大宽度1200px */
+            margin: 0 auto; /* 水平居中 */
+            padding: 20px; /* 内边距 */
         }
         
+        /* 页眉样式 */
         header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 40px 0;
-            margin-bottom: 30px;
-            box-shadow: var(--shadow);
+            background-color: var(--primary-color); /* 使用主色调 */
+            color: white; /* 文字白色 */
+            padding: 40px 0; /* 上下内边距40px */
+            margin-bottom: 30px; /* 底部外边距30px */
+            box-shadow: var(--shadow); /* 使用定义的阴影效果 */
         }
         
+        /* 页眉内容布局 */
         .header-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            display: flex; /* 使用flex布局 */
+            align-items: center; /* 垂直居中 */
+            justify-content: space-between; /* 子元素两端对齐 */
         }
         
+        /* 个人头像样式 */
         .profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid white;
-            box-shadow: var(--shadow);
+            width: 150px; /* 宽度150px */
+            height: 150px; /* 高度150px */
+            border-radius: 50%; /* 圆形头像 */
+            object-fit: cover; /* 图片填充方式 */
+            border: 5px solid white; /* 白色边框 */
+            box-shadow: var(--shadow); /* 阴影效果 */
         }
         
+        /* 页眉文本区域样式 */
         .header-text {
-            flex: 1;
-            padding-left: 40px;
+            flex: 1; /* 占据剩余空间 */
+            padding-left: 40px; /* 左侧内边距 */
         }
         
+        /* 主标题样式 */
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            font-weight: 600;
+            font-size: 2.5rem; /* 字体大小2.5rem */
+            margin-bottom: 10px; /* 底部外边距 */
+            font-weight: 600; /* 字体粗细 */
         }
         
+        /* 职称样式 */
         .title {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            font-weight: 400;
+            font-size: 1.2rem; /* 字体大小1.2rem */
+            margin-bottom: 15px; /* 底部外边距 */
+            font-weight: 400; /* 字体粗细 */
         }
         
+        /* 联系信息容器样式 */
         .contact-info {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
+            display: flex; /* flex布局 */
+            flex-wrap: wrap; /* 允许换行 */
+            gap: 15px; /* 子元素间距 */
         }
         
+        /* 单个联系信息项样式 */
         .contact-item {
-            display: flex;
-            align-items: center;
-            font-size: 0.9rem;
+            display: flex; /* flex布局 */
+            align-items: center; /* 垂直居中 */
+            font-size: 0.9rem; /* 字体大小 */
         }
         
+        /* 联系信息图标样式 */
         .contact-item i {
-            margin-right: 8px;
-            font-size: 1.1rem;
+            margin-right: 8px; /* 图标右侧间距 */
+            font-size: 1.1rem; /* 图标大小 */
         }
         
+        /* 内容区块样式 */
         .section {
-            background-color: white;
-            border-radius: 8px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: var(--shadow);
+            background-color: white; /* 白色背景 */
+            border-radius: 8px; /* 圆角 */
+            padding: 30px; /* 内边距 */
+            margin-bottom: 30px; /* 底部外边距 */
+            box-shadow: var(--shadow); /* 阴影效果 */
         }
         
+        /* 区块标题样式 */
         .section-title {
-            color: var(--primary-color);
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--secondary-color);
-            display: flex;
-            align-items: center;
+            color: var(--primary-color); /* 使用主色调 */
+            font-size: 1.8rem; /* 字体大小 */
+            margin-bottom: 20px; /* 底部外边距 */
+            padding-bottom: 10px; /* 底部内边距 */
+            border-bottom: 2px solid var(--secondary-color); /* 底部边框 */
+            display: flex; /* flex布局 */
+            align-items: center; /* 垂直居中 */
         }
         
+        /* 区块标题图标样式 */
         .section-title i {
-            margin-right: 15px;
+            margin-right: 15px; /* 图标右侧间距 */
         }
         
+        /* 子区块样式 */
         .subsection {
-            margin-bottom: 25px;
+            margin-bottom: 25px; /* 底部外边距 */
         }
         
+        /* 子区块标题样式 */
         .subsection-title {
-            font-size: 1.3rem;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
+            font-size: 1.3rem; /* 字体大小 */
+            color: var(--primary-color); /* 使用主色调 */
+            margin-bottom: 15px; /* 底部外边距 */
+            display: flex; /* flex布局 */
+            align-items: center; /* 垂直居中 */
         }
         
+        /* 子区块标题图标样式 */
         .subsection-title i {
-            margin-right: 10px;
-            font-size: 1.1rem;
+            margin-right: 10px; /* 图标右侧间距 */
+            font-size: 1.1rem; /* 图标大小 */
         }
         
+        /* 时间轴容器样式 */
         .timeline {
-            position: relative;
-            padding-left: 30px;
+            position: relative; /* 相对定位 */
+            padding-left: 30px; /* 左侧内边距 */
         }
         
+        /* 时间轴竖线伪元素 */
         .timeline::before {
-            content: '';
-            position: absolute;
-            left: 5px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background-color: var(--primary-color);
+            content: ''; /* 必须内容 */
+            position: absolute; /* 绝对定位 */
+            left: 5px; /* 左侧位置 */
+            top: 0; /* 顶部对齐 */
+            bottom: 0; /* 底部对齐 */
+            width: 2px; /* 宽度2px */
+            background-color: var(--primary-color); /* 使用主色调 */
         }
         
+        /* 时间轴项目样式 */
         .timeline-item {
-            position: relative;
-            margin-bottom: 25px;
+            position: relative; /* 相对定位 */
+            margin-bottom: 25px; /* 底部外边距 */
         }
         
+        /* 时间轴项目圆点伪元素 */
         .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -30px;
-            top: 5px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: var(--primary-color);
-            border: 2px solid white;
+            content: ''; /* 必须内容 */
+            position: absolute; /* 绝对定位 */
+            left: -30px; /* 左侧位置 */
+            top: 5px; /* 顶部位置 */
+            width: 12px; /* 宽度 */
+            height: 12px; /* 高度 */
+            border-radius: 50%; /* 圆形 */
+            background-color: var(--primary-color); /* 使用主色调 */
+            border: 2px solid white; /* 白色边框 */
         }
         
+        /* 时间轴日期样式 */
         .timeline-date {
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 5px;
+            font-weight: 600; /* 字体粗细 */
+            color: var(--primary-color); /* 使用主色调 */
+            margin-bottom: 5px; /* 底部外边距 */
         }
         
+        /* 时间轴标题样式 */
         .timeline-title {
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 5px;
+            font-weight: 600; /* 字体粗细 */
+            font-size: 1.1rem; /* 字体大小 */
+            margin-bottom: 5px; /* 底部外边距 */
         }
         
+        /* 时间轴副标题样式 */
         .timeline-subtitle {
-            color: var(--light-text);
-            font-style: italic;
-            margin-bottom: 10px;
+            color: var(--light-text); /* 使用浅色文本 */
+            font-style: italic; /* 斜体 */
+            margin-bottom: 10px; /* 底部外边距 */
         }
         
+        /* 技能容器样式 */
         .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
+            display: flex; /* flex布局 */
+            flex-wrap: wrap; /* 允许换行 */
+            gap: 15px; /* 子元素间距 */
         }
         
+        /* 单个技能项样式 */
         .skill-item {
-            background-color: var(--secondary-color);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            color: var(--primary-color);
-            font-weight: 500;
+            background-color: var(--secondary-color); /* 使用次要色调 */
+            padding: 8px 15px; /* 内边距 */
+            border-radius: 20px; /* 圆角 */
+            font-size: 0.9rem; /* 字体大小 */
+            color: var(--primary-color); /* 使用主色调 */
+            font-weight: 500; /* 字体粗细 */
         }
         
+        /* 出版物列表样式 */
         .publication-list {
-            list-style-type: none;
+            list-style-type: none; /* 去除列表默认样式 */
         }
         
+        /* 单个出版物项样式 */
         .publication-item {
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px dashed #eee;
+            margin-bottom: 15px; /* 底部外边距 */
+            padding-bottom: 15px; /* 底部内边距 */
+            border-bottom: 1px dashed #eee; /* 底部虚线边框 */
         }
         
+        /* 最后一个出版物项去除边框 */
         .publication-item:last-child {
-            border-bottom: none;
+            border-bottom: none; /* 无边框 */
         }
         
+        /* 出版物标题样式 */
         .publication-title {
-            font-weight: 600;
-            margin-bottom: 5px;
+            font-weight: 600; /* 字体粗细 */
+            margin-bottom: 5px; /* 底部外边距 */
         }
         
+        /* 出版物作者样式 */
         .publication-authors {
-            color: var(--light-text);
-            font-size: 0.9rem;
-            margin-bottom: 5px;
+            color: var(--light-text); /* 使用浅色文本 */
+            font-size: 0.9rem; /* 字体大小 */
+            margin-bottom: 5px; /* 底部外边距 */
         }
         
+        /* 出版物发表位置样式 */
         .publication-venue {
-            font-style: italic;
-            font-size: 0.9rem;
+            font-style: italic; /* 斜体 */
+            font-size: 0.9rem; /* 字体大小 */
         }
         
+        /* 成果展示画廊样式 */
         .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+            display: grid; /* 网格布局 */
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 自动填充列，最小300px */
+            gap: 20px; /* 网格间隙 */
+            margin-top: 20px; /* 顶部外边距 */
         }
         
+        /* 单个画廊项样式 */
         .gallery-item {
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
+            border-radius: 8px; /* 圆角 */
+            overflow: hidden; /* 隐藏溢出内容 */
+            box-shadow: var(--shadow); /* 阴影效果 */
+            transition: transform 0.3s ease; /* 变换动画效果 */
         }
         
+        /* 画廊项悬停效果 */
         .gallery-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px); /* 上移5px */
         }
         
+        /* 画廊图片和视频样式 */
         .gallery-item img, .gallery-item video {
-            width: 100%;
-            height: auto;
-            display: block;
+            width: 100%; /* 宽度100% */
+            height: auto; /* 高度自适应 */
+            display: block; /* 块级显示 */
         }
         
+        /* 画廊说明文字样式 */
         .gallery-caption {
-            padding: 15px;
-            background-color: white;
+            padding: 15px; /* 内边距 */
+            background-color: white; /* 白色背景 */
         }
         
+        /* 画廊说明标题样式 */
         .gallery-caption h4 {
-            margin-bottom: 5px;
-            color: var(--primary-color);
+            margin-bottom: 5px; /* 底部外边距 */
+            color: var(--primary-color); /* 使用主色调 */
         }
         
+        /* 画廊说明文字样式 */
         .gallery-caption p {
-            font-size: 0.9rem;
-            color: var(--light-text);
+            font-size: 0.9rem; /* 字体大小 */
+            color: var(--light-text); /* 使用浅色文本 */
         }
         
+        /* 页脚样式 */
         footer {
-            text-align: center;
-            padding: 20px;
-            color: var(--light-text);
-            font-size: 0.9rem;
+            text-align: center; /* 文本居中 */
+            padding: 20px; /* 内边距 */
+            color: var(--light-text); /* 使用浅色文本 */
+            font-size: 0.9rem; /* 字体大小 */
         }
         
+        /* 响应式设计 - 768px以下屏幕的样式调整 */
         @media (max-width: 768px) {
+            /* 小屏幕下页眉内容改为垂直布局 */
             .header-content {
-                flex-direction: column;
-                text-align: center;
+                flex-direction: column; /* 垂直方向 */
+                text-align: center; /* 文本居中 */
             }
             
+            /* 调整页眉文本区域样式 */
             .header-text {
-                padding-left: 0;
-                margin-top: 20px;
+                padding-left: 0; /* 去除左侧内边距 */
+                margin-top: 20px; /* 顶部外边距 */
             }
             
+            /* 联系信息居中 */
             .contact-info {
-                justify-content: center;
+                justify-content: center; /* 水平居中 */
             }
             
+            /* 画廊改为单列布局 */
             .gallery {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr; /* 单列 */
             }
         }
     </style>
+    <!-- 引入Font Awesome图标库 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <!-- 页面主体内容开始 -->
+    
+    <!-- 页眉部分 -->
     <header>
         <div class="container header-content">
+            <!-- 个人头像 -->
             <img src="WangJingyao.jpg" alt="王靖瑶副教授" class="profile-img">
+            <!-- 个人信息文本区域 -->
             <div class="header-text">
                 <h1>王靖瑶</h1>
                 <p class="title">副教授，硕士研究生导师 | 厦门大学航空航天学院</p>
+                <!-- 联系信息 -->
                 <div class="contact-info">
                     <div class="contact-item">
-                        <i class="fas fa-envelope"></i> zhangsan@xmu.edu.cn
+                        <i class="fas fa-envelope"></i> wangjingyao1@xmu.edu.cn
                     </div>
                     <div class="contact-item">
-                        <i class="fas fa-phone"></i> (0592) 218-XXXX
+                        <i class="fas fa-phone"></i> tel:18750924602
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i> 厦门大学翔安校区航空航天学院大楼
                     </div>
                     <div class="contact-item">
-                        <i class="fab fa-github"></i> github.com/zhangsan
+                        <i class="fab fa-github"></i> https://xmuwangjy.github.io/xmuwangjy/
                     </div>
                 </div>
             </div>
         </div>
     </header>
     
+    <!-- 主要内容容器 -->
     <div class="container">
+        <!-- 个人简介区块 -->
         <section class="section">
             <h2 class="section-title">
                 <i class="fas fa-user"></i>个人简介
             </h2>
             <div class="subsection">
-                <p>王靖瑶，厦门大学航空航天学院教授，硕士研究生导师。厦门大学航空航天学院自动化系副教授。2010年于内蒙古大学获得理学学士学位，2017年于北京大学获得力学系统与控制专业工学博士学位，2017年7月加入厦门大学自动化系工作。2013年10月至12月，曾在香港城市大学交流访问。2015年9月至2017年2月，作为联合培养博士生赴美国宾夕法尼亚州立大学交流访问。目前主要研究方向是多智能体系统的分布式协调控制研究、分布式优化及智能驾驶。</p>
-            </div>
-        </section>
-                
-        <section class="section">
-            <h2 class="section-title">
-                <i class="fas fa-briefcase"></i>工作经历
-            </h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-date">2017 - 至今</div>
-                    <div class="timeline-title">副教授</div>
-                    <div class="timeline-subtitle">厦门大学航空航天学院</div>
-                    <p>博士生导师，智能飞行器系统研究所所长</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">2010 - 2015</div>
-                    <div class="timeline-title">副教授</div>
-                    <div class="timeline-subtitle">南京航空航天大学航空宇航学院</div>
-                    <p>硕士生导师，飞行器设计系副主任</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">2005 - 2010</div>
-                    <div class="timeline-title">助理教授</div>
-                    <div class="timeline-subtitle">哈尔滨工业大学航天学院</div>
-                    <p>参与多项国家重大科研项目</p>
-                </div>
+                <p>王靖瑶，厦门大学航空航天学院自动化系副教授、系副主任。2017 年于北京大学力学系统与控制专业获得工学博士学位。2013 年 10 月至 12 月，曾赴香港城市大学交流访问。2015 年 9 月至 2017 年 2 月，作为联合培养博士生前往美国宾夕法尼亚州立大学交流访问。现担任 IEEE IES 技术委员会（中国）常务理事、福建省自动化学会理事、厦门市自动化学会理事。目前主要研究方向为智能协同决策与控制、智能驾驶及机器学习方法与应用。</p>
             </div>
         </section>
         
+    
+        
+        <!-- 学术奖励区块 -->
+        <section class="section">
+            <h2 class="section-title">
+                <i class="fas fa-briefcase"></i>学术奖励
+            </h2>
+            <!-- 时间轴布局 -->
+            <div class="timeline">
+                <!-- 时间轴项目0 - 当前工作 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">2024年度</div>
+                    <div class="timeline-title">Computer Networks Outstanding Reviewer</div>
+                </div>
+
+                <!-- 时间轴项目1 - 当前工作 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">2023年度</div>
+                    <div class="timeline-title">福建省科学技术进步奖</div>
+                    <p>二等奖，排名第三</p>
+                </div>
+                <!-- 时间轴项目2 - 之前工作 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">2021年度</div>
+                    <div class="timeline-title">福建省科学技术进步奖</div>
+                    <p>二等奖，排名第四</p>
+                </div>
+                <!-- 时间轴项目3 - 更早工作 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">2021年度</div>
+                    <div class="timeline-title">厦门市科学技术进步奖</div>
+                     <p>二等奖，排名第四</p>
+                </div>
+
+ 		<!-- 时间轴项目4 - 更早工作 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">2019年度</div>
+                    <div class="timeline-title">福建省引进高层次人才</div>
+                </div>
+
+            </div>
+        </section>
+        
+        <!-- 研究方向区块 -->
         <section class="section">
             <h2 class="section-title">
                 <i class="fas fa-flask"></i>研究方向
             </h2>
+            <!-- 技能标签容器 -->
             <div class="skills-container">
-                <div class="skill-item">飞行器设计与控制</div>
-                <div class="skill-item">智能材料与结构</div>
-                <div class="skill-item">航空航天系统工程</div>
-                <div class="skill-item">无人机系统</div>
-                <div class="skill-item">空间机器人技术</div>
-                <div class="skill-item">飞行器健康监测</div>
-                <div class="skill-item">先进制造技术</div>
+                <div class="skill-item">智能协同决策与控制</div>
+                <div class="skill-item">智能驾驶</div>
+                <div class="skill-item">机器学习算法与应用</div>
             </div>
         </section>
         
-        <section class="section">
-            <h2 class="section-title">
-                <i class="fas fa-book"></i>代表性论文
-            </h2>
-            <ul class="publication-list">
-                <li class="publication-item">
-                    <div class="publication-title">基于深度强化学习的无人机自主避障控制方法</div>
-                    <div class="publication-authors">张三, 李四, 王五</div>
-                    <div class="publication-venue">《航空学报》, 2022, 43(5): 325-336</div>
-                </li>
-                <li class="publication-item">
-                    <div class="publication-title">A novel shape memory alloy based morphing wing design for UAVs</div>
-                    <div class="publication-authors">Zhang S., Wang L., Chen X.</div>
-                    <div class="publication-venue">Aerospace Science and Technology, 2021, 108: 106-118</div>
-                </li>
-                <li class="publication-item">
-                    <div class="publication-title">智能复合材料在航天器结构健康监测中的应用研究进展</div>
-                    <div class="publication-authors">张三, 赵六</div>
-                    <div class="publication-venue">《复合材料学报》, 2020, 37(4): 789-800</div>
-                </li>
-            </ul>
-        </section>
+    <!-- 代表性论文区块 -->
+<section class="section">
+    <h2 class="section-title">
+        <i class="fas fa-book"></i>代表性论文
+    </h2>
+    <!-- 论文列表 -->
+    <ul class="publication-list">
+        <!-- 论文1 -->
+        <li class="publication-item">
+            <div class="publication-title">发表了SCI/EI检索学术论文60篇，其中近5年以第一作者或通讯作者发表的SCI检索论文如下：</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文2 -->
+        <li class="publication-item">
+            <div class="publication-title">1. <strong>Jingyao Wang</strong>, Xunrui Li, Jinghua Guo, Keqiang Li, Self learning-based platooning control strategy for connected autonomous vehicles with switching topologies, IEEE Transactions on Intelligent Transportation Systems, 2024, 25(12): 19842-19851</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文3 -->
+        <li class="publication-item">
+            <div class="publication-title">2. <strong>Jingyao Wang</strong>, Jinghua Guo, Keqiang Li, Huaqing Zheng, Distributed adaptive event-triggered control of connected automated vehicle platoon systems with spoofing cyber attacks, IEEE Transactions on Vehicular Technology, 2024, 73(12): 18186-18197</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文4 -->
+        <li class="publication-item">
+            <div class="publication-title">3. <strong>Jingyao Wang</strong>, Xingming Deng, Jinghua Guo, Zeqin Zeng, Resilient consensus control for multi-agent systems: A comparative survey, Sensors, 2023, 23(6): 2904</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文5 -->
+        <li class="publication-item">
+            <div class="publication-title">4. <strong>Jingyao Wang</strong>, Xingming Deng, Jinghua Guo, Yugong Luo, Keqiang Li, A fully distributed anti-windup control protocol for intelligent-connected electric vehicles platooning with switching topologies and input saturation, IEEE/ASME Transactions on Mechatronics, 2023, 28(3): 1683-1694</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文6 -->
+        <li class="publication-item">
+            <div class="publication-title">5. <strong>Jingyao Wang</strong>, Jinghua Guo, Yugong Luo, Keqiang Li, Huaqing Zheng, Design of switching controller for connected vehicles platooning with intermittent communication via mode-dependent average dwell-time approach, IEEE Internet of Things Journal, 2023, 10(3): 2708-2719</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文7 -->
+        <li class="publication-item">
+            <div class="publication-title">6. <strong>Jingyao Wang</strong>, Guanghui Wen, Zhisheng Duan, Distributed anti-windup consensus control of heterogeneous multi-agent systems over Markovian randomly switching topologies, IEEE Transactions on Automatic Control, 2022, 67(11): 6310-6317</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文8 -->
+        <li class="publication-item">
+            <div class="publication-title">7. <strong>Jingyao Wang</strong>, Guanghui Wen, Zhisheng Duan, Yifan Hu, Wangli He, Distributed H_∞ robust control of multiagent systems with uncertain parameters: Performance-region-based approach, IEEE Transactions on Systems, Man and Cybernetics: Systems, 2022, 52(5): 2888-2898</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文9 -->
+        <li class="publication-item">
+            <div class="publication-title">8. <strong>Jingyao Wang</strong>, Junfei Qiao, Guanghui Wen, Zhisheng Duan, Tingwen Huang, Rendezvous of heterogeneous multiagent systems with nonuniform time-varying information delays: An adaptive approach, IEEE Transactions on Systems, Man and Cybernetics: Systems, 2021, 51(8): 4848-4857</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文10 -->
+        <li class="publication-item">
+            <div class="publication-title">9. <strong>Jingyao Wang</strong>, Zhisheng Duan, A performance region-based approach to the H_∞ leader-following consensus of nonlinear multiagent systems, International Journal of Robust and Nonlinear Control, 2021, 31(6):2168-2185</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文11 -->
+        <li class="publication-item">
+            <div class="publication-title">10. <strong>Jingyao Wang</strong>, Huaqing Zheng, Jinghua Guo, Jingjing Fan, Keqiang Li, Distributed adaptive robust H_∞ control of intelligent-connected electric vehicles platooning subject to communication delay, IET Intelligent Transport Systems, 2021, 15(5):699-711</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文12 -->
+        <li class="publication-item">
+            <div class="publication-title">11. <strong>Jingyao Wang</strong>, Guanghui Wen, Zhisheng Duan, Jinhu Lü, Stochastic consensus control integrated with performance improvement: A consensus region-based approach, IEEE Transactions on Industrial Electronics, 2020, 67(4): 3000-3012</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文13 -->
+        <li class="publication-item">
+            <div class="publication-title">12. <strong>Jingyao Wang</strong>, Zhisheng Duan, Jianping Zeng, A performance-region-based approach to the H_∞ stochastic consensus problem, IEEE Transactions on Circuits and Systems II: Express Briefs, 2020, 67(7): 1289-1293</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文14 -->
+        <li class="publication-item">
+            <div class="publication-title">13. <strong>Jingyao Wang</strong>, Jinghua Guo, Q. Wang, Zhisheng Duan, Guanrong Chen, Necessary and sufficient conditions for non-concave network utility maximization, International Journal of Control, 2020, 93(2): 319-327</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文15 -->
+        <li class="publication-item">
+            <div class="publication-title">14. <strong>Jingyao Wang</strong>, Yige Li, Zhisheng Duan, Jianping Zeng, A fully distributed robust secure consensus protocol for linear multi-agent systems, IEEE Transactions on Circuits and Systems II: Express Briefs, 2022, 69(7): 3264-3268</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文16 -->
+        <li class="publication-item">
+            <div class="publication-title">15. Jinghua Guo , Zhifei He, Huinian Wang, <strong>Jingyao Wang</strong>, Keqiang Li, Vehicle Trajectory Prediction by Integrating Data-Driven and Knowledge-Guided Technique, IEEE Transactions on Intelligent Transportation Systems, DOI: 10.1109/TITS.2025.3549744</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文17 -->
+        <li class="publication-item">
+            <div class="publication-title">16. Jinghua Guo , <strong>Jingyao Wang</strong>, Ban Wang, Fuel-efficient and safe distributed hierarchical control for connected hybrid electric vehicles platooning, IET Intelligent Transport Systems, 2024, 18(7): 1227-1236</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文18 -->
+        <li class="publication-item">
+            <div class="publication-title">17. Jinghua Guo , <strong>Jingyao Wang</strong>, Huinian Wang, Baoping Xiao, Zhifei He and Lubin Li, Research on Road Scene Understanding of Autonomous Vehicles Based on Multi-Task Learning, Sensors, 2023, 23(13):6238</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文19 -->
+        <li class="publication-item">
+            <div class="publication-title">18. Jinghua Guo, Lubin Li, <strong>Jingyao Wang</strong>, Keqiang Li, Cyber-physical system-based path tracking control of autonomous vehicles under cyber-attacks, IEEE Transactions on Industrial Information, 2023, 19(5): 6624-6635</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文20 -->
+        <li class="publication-item">
+            <div class="publication-title">19. Jinghua Guo, <strong>Jingyao Wang</strong>, Keqiang Li, Yugong Luo, Adaptive non-linear coordinated optimal dynamic platoon control of connected autonomous distributed electric vehicles on curved roads, IET Intelligent Transport Systems, 2020, 14(12): 1626-1637</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文21 -->
+        <li class="publication-item">
+            <div class="publication-title">20. Jinghua Guo, <strong>Jingyao Wang</strong>, Yugong Luo, Keqiang Li, Takagi-sugeno fuzzy-based robust H_∞ integrated lane-keeping and direct yaw moment controller of unmanned electric vehicles, IEEE/ASME Transactions on Mechatronics, 26(4): 2151-2162, 2021</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文22 -->
+        <li class="publication-item">
+            <div class="publication-title">21. Jin Ke, <strong>Jingyao Wang</strong>, Jianping Zeng, Weiyao Lan, Fast finite-time tracking control for multi-agent systems with mismatched disturbances under directed communication graphs, International Journal of Systems Science, 2020, 51(6): 3320-3338</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文23 -->
+        <li class="publication-item">
+            <div class="publication-title">专利、软著等情况：</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文24 -->
+        <li class="publication-item">
+            <div class="publication-title">授权国家发明专利20项、软件著作权2项。参与制定福建省地方标准1项。代表性专利如下</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文25 -->
+        <li class="publication-item">
+            <div class="publication-title">1.<strong>王靖瑶</strong>，李依格，郭景华，异构多智能体系统的完全分布式抗饱和跟踪控制方法，国家发明专利，专利号：ZL202110879934.7，2023.8.18</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文26 -->
+        <li class="publication-item">
+            <div class="publication-title">2. <strong>王靖瑶</strong>，郭景华，郑华青，邓醒明，李依格，一种抗通信间歇的智能网联电动汽车队列鲁棒控制方法，国家发明专利，专利号：ZL202111614397.X, 2023.10.03</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文27 -->
+        <li class="publication-item">
+            <div class="publication-title">3. <strong>王靖瑶</strong>，郭景华，郑华青，一种抗通信延迟的智能电动车编队自适应鲁棒控制方法，国家发明专利，专利号：ZL201910958157.8, 2021.05.14</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文28 -->
+        <li class="publication-item">
+            <div class="publication-title">4. <strong>王靖瑶</strong>，郑华青，一种端到端的分布式流量分配方法，国家发明专利，专利号：ZL201811182207.X，2020.05.29</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文29 -->
+        <li class="publication-item">
+            <div class="publication-title">5. 郭景华;李录斌;<strong>王靖瑶</strong>;何智飞;肖宝平，网络攻击下智能电动车辆轨迹跟踪控制方法，国家发明专利，专利号：ZL 2022 1 0423341.4，2024.6.7</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文30 -->
+        <li class="publication-item">
+            <div class="publication-title">6. 郭景华;董清钰;<strong>王靖瑶</strong>;肖宝平;何智飞;李录斌，一种野外环境下的无人车障碍物识别方法，国家发明专利，专利号：ZL 2022 1 0741541.4，2024.6.4</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文31 -->
+        <li class="publication-item">
+            <div class="publication-title">7. 郭景华，<strong>王靖瑶</strong>，王班，李文昌，弯道下多智能电动汽车协作式巡航横向综合控制方法，国家发明专利，专利号：201910958150.6, 2021.01.22</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文32 -->
+        <li class="publication-item">
+            <div class="publication-title">8. 郭景华，<strong>王靖瑶</strong>，郑华青，一种四轮转向自动驾驶汽车横向鲁棒容错控制系统及方法，国家发明专利，专利号：ZL201911309018.9，2021.01.01</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文33 -->
+        <li class="publication-item">
+            <div class="publication-title">9.   郭景华，何智飞，<strong>王靖瑶</strong>，一种自动驾驶汽车对周车驾驶意图和轨迹联合预测的方法，国家发明专利，专利号： ZL202210980755.7,2025.2.14</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+        <!-- 论文34 -->
+        <li class="publication-item">
+            <div class="publication-title">10. 郭景华，李文昌，<strong>王靖瑶</strong>，王班，肖宝平，基于深度强化学习的驾驶员纵向跟车行为模型构建方法，国家发明专利，专利号：ZL202011026453.3，2020.09.25</div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+        </li>
+    </ul>
+</section>
         
-        <section class="section">
-            <h2 class="section-title">
-                <i class="fas fa-trophy"></i>科研项目
-            </h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-date">2021 - 2025</div>
-                    <div class="timeline-title">国家自然科学基金重点项目</div>
-                    <div class="timeline-subtitle">主持</div>
-                    <p>智能变形飞行器关键技术研究 (项目编号: 920XXXXX)</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">2018 - 2022</div>
-                    <div class="timeline-title">国家重点研发计划课题</div>
-                    <div class="timeline-subtitle">主持</div>
-                    <p>空间机器人智能控制与自主决策技术 (项目编号: 2018YFBXXXXXX)</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">2016 - 2020</div>
-                    <div class="timeline-title">国家自然科学基金面上项目</div>
-                    <div class="timeline-subtitle">主持</div>
-                    <p>基于智能材料的飞行器结构健康监测新方法 (项目编号: 5167XXXX)</p>
-                </div>
-            </div>
-        </section>
+     <!-- 科研项目区块 -->
+<section class="section">
+    <h2 class="section-title">
+        <i class="fas fa-trophy"></i>科研项目
+    </h2>
+    <!-- 时间轴布局 -->
+    <div class="timeline">
+        <!-- 项目1 -->
+        <div class="timeline-item">
+            <div class="timeline-date">2025 - 2028</div>
+            <div class="timeline-title">国家自然科学基金面上项目</div>
+            <div class="timeline-subtitle">项目负责人</div>
+            <p>（项目具体内容，可根据实际情况补充）</p>
+        </div>
+        <!-- 项目2 -->
+        <div class="timeline-item">
+            <div class="timeline-date">2019 - 2021</div>
+            <div class="timeline-title">国家自然科学基金青年科学基金项目</div>
+            <div class="timeline-subtitle">项目负责人</div>
+            <p>（项目具体内容，可根据实际情况补充）</p>
+        </div>
+        <!-- 项目3 -->
+        <div class="timeline-item">
+            <div class="timeline-date">2019 - 2022</div>
+            <div class="timeline-title">福建省自然科学基金青年项目</div>
+            <div class="timeline-subtitle">项目负责人</div>
+            <p>（项目具体内容，可根据实际情况补充）</p>
+        </div>
+        <!-- 项目4 -->
+        <div class="timeline-item">
+            <div class="timeline-date">2024 - 2027</div>
+            <div class="timeline-title">厦门市自然科学基金青年项目</div>
+            <div class="timeline-subtitle">项目负责人</div>
+            <p>（项目具体内容，可根据实际情况补充）</p>
+        </div>
+        <!-- 项目5 -->
+        <div class="timeline-item">
+            <div class="timeline-date">2024 - 2025</div>
+            <div class="timeline-title">国家教育部高等教育司产学合作协同育人项目</div>
+            <div class="timeline-subtitle">项目负责人</div>
+            <p>（项目具体内容，可根据实际情况补充）</p>
+        </div>
+        <!-- 项目6 -->
+        <div class="timeline-item">
+            <div class="timeline-date">2023 - 2024</div>
+            <div class="timeline-title">企业委托技术开发项目</div>
+            <div class="timeline-subtitle">项目负责人</div>
+            <p>基于结构共用的智能环境友好型汽车概念、组成及技术体系架构设计开发</p>
+        </div>
+    </div>
+</section>
         
+        <!-- 成果展示区块 -->
         <section class="section">
             <h2 class="section-title">
                 <i class="fas fa-images"></i>成果展示
             </h2>
+            <!-- 画廊布局 -->
             <div class="gallery">
+                <!-- 展示项1 - 视频 -->
                 <div class="gallery-item">
                     <video controls poster="https://via.placeholder.com/300x200">
                         <source src="sample.mp4" type="video/mp4">
@@ -432,6 +732,7 @@
                         <p>基于形状记忆合金的机翼变形技术，实现无人机在不同飞行状态下的最优气动性能</p>
                     </div>
                 </div>
+                <!-- 展示项2 - 图片 -->
                 <div class="gallery-item">
                     <img src="https://via.placeholder.com/300x200" alt="科研团队">
                     <div class="gallery-caption">
@@ -439,6 +740,7 @@
                         <p>2022年实验室成员在风洞实验室进行无人机气动测试</p>
                     </div>
                 </div>
+                <!-- 展示项3 - 图片 -->
                 <div class="gallery-item">
                     <img src="https://via.placeholder.com/300x200" alt="专利证书">
                     <div class="gallery-caption">
@@ -446,6 +748,7 @@
                         <p>一种基于深度学习的无人机自主避障系统及方法 (专利号: ZL202010XXXXXX.X)</p>
                     </div>
                 </div>
+                <!-- 展示项4 - 视频 -->
                 <div class="gallery-item">
                     <video controls poster="https://via.placeholder.com/300x200">
                         <source src="sample2.mp4" type="video/mp4">
@@ -459,38 +762,61 @@
             </div>
         </section>
         
+        <!-- 教学情况区块 -->
         <section class="section">
             <h2 class="section-title">
                 <i class="fas fa-chalkboard-teacher"></i>教学情况
             </h2>
+            <!-- 子区块1 - 教学研究 -->
             <div class="subsection">
                 <h3 class="subsection-title">
-                    <i class="fas fa-book-open"></i>主讲课程
+                    <i class="fas fa-book-open"></i>教学研究
                 </h3>
                 <ul style="list-style-type: none;">
                     <li style="margin-bottom: 10px;">
-                        <strong>飞行器设计与系统工程</strong> - 本科生专业核心课
+                        <strong>主持2024年第一批教育部产学合作协同育人项目</strong> - 基于GCKontrol的自动化专业课程教学师资培训（项目编号：231107538015425）
                     </li>
+
                     <li style="margin-bottom: 10px;">
-                        <strong>智能材料与结构</strong> - 研究生学位课
+                        <strong>福建省一流本科课程建设计划</strong> - 现代控制理论，2023。
                     </li>
+
                     <li style="margin-bottom: 10px;">
-                        <strong>航空航天前沿技术</strong> - 博士生研讨课
+                        <strong>参与厦门大学本科高校教育教革项目</strong> - 面向一流专业的现代控制理论教学改革研究，2020-2022。
+                    </li>
+
+                    <li style="margin-bottom: 10px;">
+                        <strong>参与厦门大学一流本科课程建设计划</strong> - 现代控制理论，2020。
                     </li>
                 </ul>
             </div>
+            <!-- 子区块2 - 主讲课程 -->
             <div class="subsection">
                 <h3 class="subsection-title">
-                    <i class="fas fa-user-graduate"></i>指导学生
+                    <i class="fas fa-user-graduate"></i>主讲课程
                 </h3>
-                <p>已培养博士研究生12名，硕士研究生25名。指导本科生获全国大学生航空航天类竞赛一等奖3项。</p>
+ <ul style="list-style-type: none;">
+                    <li style="margin-bottom: 10px;">
+                        <strong>现代控制理论基础A </strong> - 本科生专业核心课
+                    </li>
+
+                    <li style="margin-bottom: 10px;">
+                        <strong>高级程序设计-Matlab</strong> - 本科生专业核心课
+                    </li>
+
+                    <li style="margin-bottom: 10px;">
+                        <strong>线性系统理论</strong> - 研究生专业核心课
+                    </li>
+
+                </ul>
             </div>
         </section>
     </div>
     
+    <!-- 页脚 -->
     <footer>
         <div class="container">
-            <p>© 2023 张三 - 厦门大学航空航天学院 | 最后更新: 2023年6月</p>
+            <p>© 2025 王靖瑶 - 厦门大学航空航天学院 | 最后更新: 2025年5月</p>
         </div>
     </footer>
 </body>
